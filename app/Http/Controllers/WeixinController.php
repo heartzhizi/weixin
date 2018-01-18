@@ -29,7 +29,7 @@ class WeixinController extends Controller
        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];//php:input
        //写入日志  在同级目录下建立php_log.txt
 //chmod 777php_log.txt(赋权) chown wwwphp_log.txt(修改主)
-error_log(var_export($postStr,1),3,'php_log.txt');
+//error_log(var_export($postStr,1),3,'php_log.txt');
 //日志图片
          //extract post data
        if (!empty($postStr)){
