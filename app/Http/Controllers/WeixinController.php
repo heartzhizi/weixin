@@ -6,29 +6,16 @@ use Illuminate\Http\Request;
 
 class WeixinController extends Controller
 {
-/*    public function api()
-     {
-	  // echo "hello world";
-         $echoStr = $_GET["echostr"];
-         if($this->checkSignature()){
-             echo $echoStr;
-             exit;
-         }
 
-     }*/
-
-	 public function api()
+	    //响应消息
+     public function api()
       {
         //get post data, May be due to the different environments
        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];//php:input
-   
-	echo "hello";
-/*	return ;
-     //写入日志  在同级目录下建立php_log.txt
-      //chmod 777php_log.txt(赋权) chown wwwphp_log.txt(修改主)
-      // error_log(var_export($postStr,1),3,'php_log.txt');
-      //日志图片
-
+       //写入日志  在同级目录下建立php_log.txt
+//chmod 777php_log.txt(赋权) chown wwwphp_log.txt(修改主)
+//error_log(var_export($postStr,1),3,'php_log.txt');
+//日志图片
          //extract post data
        if (!empty($postStr)){
                /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
@@ -47,24 +34,21 @@ class WeixinController extends Controller
                            <Content><![CDATA[%s]]></Content>
                            <FuncFlag>0</FuncFlag>
                            </xml>";
-               //订阅事件
-               if($postObj->Event=="subscribe")
-               {
-                   $msgType = "text";
-                   $contentStr = "欢迎关注安子尘，微信babyanzichen";
-                   $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                   echo $resultStr;
-               }
-
-
-               //语音识别
-               if($postObj->MsgType=="voice"){
-                   $msgType = "text";
-                   $contentStr = trim($postObj->Recognition,"。");
-                   $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                   echo  $resultStr;
-               }
-
+//                //订阅事件
+//                if($postObj->Event=="subscribe")
+//                {
+//                    $msgType = "text";
+//                    $contentStr = "欢迎关注安子尘，微信babyanzichen";
+//                    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+//                    echo $resultStr;
+//                }
+//                //语音识别
+//                if($postObj->MsgType=="voice"){
+//                    $msgType = "text";
+//                    $contentStr = trim($postObj->Recognition,"。");
+//                    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+//                    echo  $resultStr;
+//                }
                //自动回复
                if(!empty( $keyword ))
                {
@@ -75,32 +59,12 @@ class WeixinController extends Controller
                }else{
                    echo "Input something...";
                }
-
        }else {
            echo "";
            exit;
-       }*/
-    }
-	
+       }
+      }
 
-     //检查签名
-     private function checkSignature()
-     {
-         $signature = $_GET["signature"];
-         $timestamp = $_GET["timestamp"];
-         $nonce = $_GET["nonce"];
-         $token = "weixin";
-         $tmpArr = array($token, $timestamp, $nonce);
-         sort($tmpArr, SORT_STRING);
-         $tmpStr = implode($tmpArr);
-         $tmpStr = sha1($tmpStr);
-         if($tmpStr == $signature){
-             return true;
-
-         }else{
-             return false;
-         }
-     }
 }
 
 ?>
