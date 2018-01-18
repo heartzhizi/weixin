@@ -70,13 +70,13 @@ class WeixinController extends Controller
                      $msgType = "text";
                    $contentStr = "小朋友你好！";
                    $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                   echo $resultStr;
+                   return $resultStr;
                }else{
-                   echo "Input something...";
+                   return "Input something...";
                }
        }else {
-           echo "";
-           exit;
+           return "";
+           
        }
       }
 
